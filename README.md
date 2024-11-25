@@ -1,5 +1,6 @@
 # PyQt Image Annotation Tool
-## Forked from robertbrada/PyQt-image-annotation-tool. Due to some specific requirements in the project, I have modified the code. I hope these changes can help others with similar needs.
+## Forked from robertbrada/PyQt-image-annotation-tool. 
+Due to some specific requirements in the project, I have modified the code. I hope these changes can help others with similar needs.
 
 ## New features
 - [2024/11/25] add a file navigation bar with color-coded labels.
