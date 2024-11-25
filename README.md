@@ -1,10 +1,16 @@
 # PyQt Image Annotation Tool
+## Forked from robertbrada/PyQt-image-annotation-tool. Due to some specific requirements in the project, I have modified the code. I hope these changes can help others with similar needs.
+
+## New features
+- [2024/11/25] add a file navigation bar with color-coded labels.
+- [2024/11/25] only applicable for one-shot image labeling.
+- [2024/11/25] change the default mode to "move".
+- [2024/11/25] Increase the GUI and image sizes.
 
 This app is used to label images in a given directory.
 Labeled images can be moved or copied into sub-directories, which are named as assigned labels.
 The app is just a single Python script with GUI.
 
-![PyQt Image Annotation Tool GUI](https://i.stack.imgur.com/iihhf.png)
 
 ## What can this app do
 For example you have folder ./data/images/ with a lot of images and you need to assign some
@@ -21,7 +27,7 @@ label(s) to these images.
 
 1. Clone the project:
     ```bash
-    git clone https://github.com/robertbrada/PyQt-image-annotation-tool.git
+    git clone https://github.com/jaminryu/classification-image-annotation-tool
     ```
 
 2. Enter the directory and install the dependencies (you might need to use ```pip3``` instead of ```pip```):

@@ -458,26 +458,26 @@ class LabelerWindow(QWidget):
         assign colors for labels in file navigation bar
         """
         colors = [
-            QColor("#3cb44b"),
-            QColor("#ffe119"),
-            QColor("#e6194b"),
-            QColor("#4363d8"),
-            QColor("#f58231"),
-            QColor("#911eb4"),
-            QColor("#42d4f4"),
-            QColor("#f032e6"),
-            QColor("#bfef45"),
-            QColor("#fabebe"),
-            QColor("#469990"),
-            QColor("#e6beff"),
-            QColor("#9a6324"),
-            QColor("#fffac8"),
-            QColor("#800000"),
-            QColor("#aaffc3"),
-            QColor("#808000"),
-            QColor("#ffd8b1"),
-            QColor("#000075"),
-            QColor("#808080"),
+            QColor("#3cb44b"),  # Bright green
+            QColor("#ffe119"),  # Yellow
+            QColor("#e6194b"),  # Bright red
+            QColor("#4363d8"),  # Blue
+            QColor("#f58231"),  # Orange
+            QColor("#911eb4"),  # Purple
+            QColor("#42d4f4"),  # Sky blue
+            QColor("#f032e6"),  # Magenta
+            QColor("#bfef45"),  # Lime
+            QColor("#fabebe"),  # Light pink
+            QColor("#469990"),  # Teal
+            QColor("#e6beff"),  # Lavender
+            QColor("#9a6324"),  # Brown
+            QColor("#fffac8"),  # Light yellow (cream)
+            QColor("#800000"),  # Maroon
+            QColor("#aaffc3"),  # Mint green
+            QColor("#808000"),  # Olive
+            QColor("#ffd8b1"),  # Peach
+            QColor("#000075"),  # Dark blue (navy)
+            QColor("#808080"),  # Gray
         ]
         label_colors = {}
         for i, label in enumerate(self.labels):
