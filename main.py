@@ -25,7 +25,8 @@ def get_img_paths(dir, extensions=('.jpg', '.png', '.jpeg')):
         if filename.lower().endswith(extensions):
             img_paths.append(os.path.join(dir, filename))
 
-    img_paths.sort()  # 按照文件名排序
+    # sort image names
+    img_paths.sort()
     return img_paths
 
 
@@ -394,7 +395,7 @@ class LabelerWindow(QWidget):
         ui_line.setGeometry(220, 98, self.img_panel_width, 1)
         ui_line.setStyleSheet('background-color: black')
 
-        # 文件导航栏
+        # file Navigation Bar
         self.file_list_widget.setGeometry(10, 10, 200, self.height - 20)
         self.populate_file_list()
 
@@ -454,29 +455,29 @@ class LabelerWindow(QWidget):
 
     def assign_label_colors(self):
         """
-        为每个标签分配一种颜色
+        assign colors for labels in file navigation bar
         """
         colors = [
-            QColor("#3cb44b"),  # 绿色
-            QColor("#ffe119"),  # 黄色
-            QColor("#e6194b"),  # 红色
-            QColor("#4363d8"),  # 蓝色
-            QColor("#f58231"),  # 橙色
-            QColor("#911eb4"),  # 紫色
-            QColor("#42d4f4"),  # 青色
-            QColor("#f032e6"),  # 洋红
-            QColor("#bfef45"),  # 黄绿色
-            QColor("#fabebe"),  # 粉红
-            QColor("#469990"),  # 蓝绿色
-            QColor("#e6beff"),  # 淡紫色
-            QColor("#9a6324"),  # 棕色
-            QColor("#fffac8"),  # 米色
-            QColor("#800000"),  # 栗色
-            QColor("#aaffc3"),  # 薄荷绿
-            QColor("#808000"),  # 橄榄绿
-            QColor("#ffd8b1"),  # 杏色
-            QColor("#000075"),  # 深蓝
-            QColor("#808080"),  # 灰色
+            QColor("#3cb44b"),
+            QColor("#ffe119"),
+            QColor("#e6194b"),
+            QColor("#4363d8"),
+            QColor("#f58231"),
+            QColor("#911eb4"),
+            QColor("#42d4f4"),
+            QColor("#f032e6"),
+            QColor("#bfef45"),
+            QColor("#fabebe"),
+            QColor("#469990"),
+            QColor("#e6beff"),
+            QColor("#9a6324"),
+            QColor("#fffac8"),
+            QColor("#800000"),
+            QColor("#aaffc3"),
+            QColor("#808000"),
+            QColor("#ffd8b1"),
+            QColor("#000075"),
+            QColor("#808080"),
         ]
         label_colors = {}
         for i, label in enumerate(self.labels):
@@ -489,26 +490,20 @@ class LabelerWindow(QWidget):
         :param label: selected label
         """
 
-        # 获取当前图片的文件名
         img_path = self.img_paths[self.counter]
         img_name = os.path.split(img_path)[-1]
 
-        # 如果图像已经有标签
         if img_name in self.assigned_labels:
             previous_label = self.assigned_labels[img_name]
 
-            # 如果点击的是相同的标签，则取消标签（切换功能）
             if label == previous_label:
-                # 删除标签
                 del self.assigned_labels[img_name]
 
-                # 从之前的标签文件夹中移除图像
                 if self.mode == 'copy':
                     os.remove(os.path.join(self.input_folder, label, img_name))
                 elif self.mode == 'move':
                     shutil.move(os.path.join(self.input_folder, label, img_name), self.input_folder)
             else:
-                # 分配新标签，移除之前的标签文件
                 if self.mode == 'copy':
                     os.remove(os.path.join(self.input_folder, previous_label, img_name))
                     shutil.copy(img_path, os.path.join(self.input_folder, label))
@@ -517,17 +512,14 @@ class LabelerWindow(QWidget):
                                 os.path.join(self.input_folder, label, img_name))
                 self.assigned_labels[img_name] = label
         else:
-            # 图像还没有标签，直接分配新标签
             self.assigned_labels[img_name] = label
             if self.mode == 'copy':
                 shutil.copy(img_path, os.path.join(self.input_folder, label))
             elif self.mode == 'move':
                 shutil.move(img_path, os.path.join(self.input_folder, label))
 
-        # 更新文件列表中的项目状态
         self.update_file_list_item(self.counter)
 
-        # 自动显示下一张图片
         if self.show_next_checkbox.isChecked():
             self.show_next_image()
         else:
@@ -554,7 +546,6 @@ class LabelerWindow(QWidget):
             self.set_button_color(filename)
             self.csv_generated_message.setText('')
 
-            # 更新文件列表中的当前项
             self.file_list_widget.setCurrentRow(self.counter)
 
         # change button color if this is last image in dataset
@@ -585,7 +576,6 @@ class LabelerWindow(QWidget):
                 self.set_button_color(filename)
                 self.csv_generated_message.setText('')
 
-                # 更新文件列表中的当前项
                 self.file_list_widget.setCurrentRow(self.counter)
 
     def set_image(self, path):
@@ -659,7 +649,7 @@ class LabelerWindow(QWidget):
 
     def set_button_color(self, filename):
         """
-        更新按钮颜色，突出显示已选标签
+        update colors
         """
 
         if filename in self.assigned_labels:
@@ -683,7 +673,7 @@ class LabelerWindow(QWidget):
 
     def labels_to_zero_one(self, label):
         """
-        将标签转换为 one-hot 向量
+        change the label to one-hot vector
         """
         label_to_int = dict((c, i) for i, c in enumerate(self.labels))
         zero_one_arr = np.zeros([self.num_labels], dtype=int)
@@ -698,7 +688,7 @@ class LabelerWindow(QWidget):
 
     def populate_file_list(self):
         """
-        填充文件导航栏，显示所有图片，并标记已标注和未标注的状态
+        populate file list
         """
         for idx, img_path in enumerate(self.img_paths):
             img_name = os.path.split(img_path)[-1]
@@ -706,42 +696,38 @@ class LabelerWindow(QWidget):
             self.file_list_widget.addItem(item)
             self.update_file_list_item(idx)
 
-        # 设置当前项
         self.file_list_widget.setCurrentRow(self.counter)
 
     def update_file_list_item(self, idx):
         """
-        更新文件列表中的项目状态，根据标签显示不同的颜色
+        update file list item
         """
         item = self.file_list_widget.item(idx)
         img_path = self.img_paths[idx]
         img_name = os.path.split(img_path)[-1]
 
         if img_name in self.assigned_labels:
-            # 已标注，根据标签设置颜色
+            # labeled
             label = self.assigned_labels[img_name]
             color = self.label_colors.get(label, Qt.white)
             item.setForeground(color)
         else:
-            # 未标注，设置为白色
+            # unlabeled
             item.setForeground(Qt.white)
 
     def on_file_item_clicked(self, item):
         """
-        当点击文件列表中的某个项时，显示对应的图片
+        When clicking on an item in the file list, the corresponding image is displayed
         """
         img_name = item.text()
         img_path = os.path.join(self.input_folder, img_name)
         if not os.path.exists(img_path):
-            # 如果图片被移动到其他文件夹，需要在已标注标签中查找路径
             if img_name in self.assigned_labels:
                 label = self.assigned_labels[img_name]
                 img_path = os.path.join(self.input_folder, label, img_name)
             else:
-                # 图片不存在
                 return
 
-        # 更新当前图片索引
         self.counter = self.img_paths.index(os.path.join(self.input_folder, img_name))
 
         self.set_image(img_path)
@@ -752,7 +738,7 @@ class LabelerWindow(QWidget):
 
     def keyPressEvent(self, event):
         """
-        处理键盘事件，当焦点在 QListWidget 上时，确保快捷键仍然有效
+        Handle keyboard events and make sure shortcuts are still valid when focus is on a QListWidget
         """
         if event.key() == Qt.Key_Left:
             self.show_prev_image()
