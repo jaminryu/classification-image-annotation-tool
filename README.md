@@ -28,12 +28,12 @@ label(s) to these images.
 
 1. Clone the project:
     ```bash
-    git clone https://github.com/jaminryu/classification-image-annotation-tool
+    git clone https://github.com/jaminryu/image-classification-annotation-tool
     ```
 
 2. Enter the directory and install the dependencies (you might need to use ```pip3``` instead of ```pip```):
     ```bash
-    cd PyQt-image-annotation-tool
+    cd image-classification-annotation-tool
     pip install -r requirements.txt
     ```
 3. Run the app (use ```python3``` for Python 3)
