@@ -301,7 +301,7 @@ class LabelerWindow(QWidget):
         self.left = 200
         self.top = 100
         self.width = 1600
-        self.height = 1200
+        self.height = 900
         # img panel size should be square-like to prevent some problems with different aspect ratios
         self.img_panel_width = 1100
         self.img_panel_height = 1100
@@ -313,7 +313,7 @@ class LabelerWindow(QWidget):
         self.labels = labels
         self.num_labels = len(self.labels)
         self.num_images = len(self.img_paths)
-        self.assigned_labels = {}  # 映射图像名称到标签（字符串）
+        self.assigned_labels = {}
         self.mode = mode
 
         # initialize list to save all label buttons
@@ -329,14 +329,11 @@ class LabelerWindow(QWidget):
         self.show_next_checkbox = QCheckBox("Automatically show next image when labeled", self)
         self.generate_xlsx_checkbox = QCheckBox("Also generate .xlsx file", self)
 
-        # 创建文件导航栏
         self.file_list_widget = QListWidget(self)
         self.file_list_widget.itemClicked.connect(self.on_file_item_clicked)
 
-        # 设置文件导航栏的背景颜色和默认文字颜色
         self.file_list_widget.setStyleSheet("background-color: #333333; color: white;")
 
-        # 创建标签到颜色的映射
         self.label_colors = self.assign_label_colors()
 
         # create label folders
