@@ -300,8 +300,8 @@ class LabelerWindow(QWidget):
         self.title = 'PyQt5 - Annotation tool for assigning image classes'
         self.left = 200
         self.top = 100
-        self.width = 1600
-        self.height = 900
+        self.width = 800
+        self.height = 800
         # img panel size should be square-like to prevent some problems with different aspect ratios
         self.img_panel_width = 1100
         self.img_panel_height = 1100
